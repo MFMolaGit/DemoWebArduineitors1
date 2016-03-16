@@ -48,8 +48,8 @@ public class MessageController {
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public ModelAndView view(@PathVariable("id") Message message) {
-		return new ModelAndView("messages/view", "message", message);
+	public ModelAndView view(@PathVariable("id") Long id) {
+		return new ModelAndView("messages/view", "message", this.messageRepository.findOne(id));
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)

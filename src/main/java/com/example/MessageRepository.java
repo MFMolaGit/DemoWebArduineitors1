@@ -13,16 +13,18 @@
 
 package com.example;
 
+import org.springframework.data.repository.Repository;
+
 /**
  * @author Rob Winch
  */
-public interface MessageRepository {
+public interface MessageRepository extends Repository<Message, Long> {
 
 	Iterable<Message> findAll();
 
 	Message save(Message message);
 
-	Message findMessage(Long id);
+	Message findOne(Long id);
 
 	Long delete(Message message);
 

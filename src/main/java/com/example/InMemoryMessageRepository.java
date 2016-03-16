@@ -23,18 +23,18 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * @author Dave Syer
  */
-public class InMemoryMessageRepository implements MessageRepository {
+public class InMemoryMessageRepository /*implements MessageRepository */{
 
 	private static AtomicLong counter = new AtomicLong();
 
 	private final ConcurrentMap<Long, Message> messages = new ConcurrentHashMap<Long, Message>();
 
-	@Override
+//	@Override
 	public Iterable<Message> findAll() {
 		return this.messages.values();
 	}
 
-	@Override
+//	@Override
 	public Message save(Message message) {
 		Long id = message.getId();
 		if (id == null) {
@@ -45,12 +45,12 @@ public class InMemoryMessageRepository implements MessageRepository {
 		return message;
 	}
 
-	@Override
+//	@Override
 	public Message findMessage(Long id) {
 		return this.messages.get(id);
 	}
 
-	@Override
+//	@Override
 	public Long delete(Message message) {
 		return ((Message)this.messages.remove(message.getId())).getId();
 	}
