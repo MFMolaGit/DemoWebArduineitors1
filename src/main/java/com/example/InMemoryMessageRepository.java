@@ -35,15 +35,15 @@ public class InMemoryMessageRepository /*implements MessageRepository */{
 	}
 
 //	@Override
-	public Message save(Message message) {
-		Long id = message.getId();
-		if (id == null) {
-			id = counter.incrementAndGet();
-			message.setId(id);
-		}
-		this.messages.put(id, message);
-		return message;
-	}
+//	public Message save(Message message) {
+//		Long id = message.getId();
+//		if (id == null) {
+//			id = counter.incrementAndGet();
+//			message.setId(id);
+//		}
+//		this.messages.put(id, message);
+//		return message;
+//	}
 
 //	@Override
 	public Message findMessage(Long id) {
@@ -51,8 +51,8 @@ public class InMemoryMessageRepository /*implements MessageRepository */{
 	}
 
 //	@Override
-	public Long delete(Message message) {
-		return ((Message)this.messages.remove(message.getId())).getId();
-	}
+//	public Long delete(Message message) {
+//		return ((Message)this.messages.remove(message.getId())).getId();
+//	}
 
 }

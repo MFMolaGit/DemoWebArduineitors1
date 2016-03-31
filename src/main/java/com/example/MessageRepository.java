@@ -13,19 +13,21 @@
 
 package com.example;
 
-import org.springframework.data.repository.Repository;
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * @author Rob Winch
  */
-public interface MessageRepository extends Repository<Message, Long> {
+public interface MessageRepository extends MongoRepository<Message, String> {
 
-	Iterable<Message> findAll();
+	List<Message> findAll();
 
 	Message save(Message message);
 
-	Message findOne(Long id);
+	Message findOne(String id);
 
-	Long delete(Message message);
+	void delete(Message message);
 
 }

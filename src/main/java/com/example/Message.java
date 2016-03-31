@@ -16,17 +16,13 @@ package com.example;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.data.annotation.Id;
 
 /**
  * @author Rob Winch
  */
-@Entity
+//@Entity
 public class Message implements Serializable {
 
 	/**
@@ -35,27 +31,27 @@ public class Message implements Serializable {
 	private static final long serialVersionUID = 1658147667286297761L;
 
 	@Id
-	@GeneratedValue
-	private Long id;
+//	@GeneratedValue
+	private String id;
 
 	@NotBlank(message = "Message is required.")
-	@Column(nullable = false)
+//	@Column(nullable = false)
 	private String text;
 
 	@NotBlank(message = "Summary is required.")
-	@Column(nullable = false)
+//	@Column(nullable = false)
 	private String summary;
 
-	@Column(nullable = true)
+//	@Column(nullable = true)
 	private Calendar created = Calendar.getInstance();
 
-	public Long getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 
 	public Calendar getCreated() {
 		return this.created;
