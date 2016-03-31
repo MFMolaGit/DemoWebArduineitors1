@@ -15,9 +15,6 @@ package com.example.mvc;
 
 import javax.validation.Valid;
 
-import com.example.Message;
-import com.example.MessageRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -28,12 +25,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.Message;
+import com.example.MessageRepository;
+
 /**
  * @author Rob Winch
  */
 @Controller
 @RequestMapping("/")
 public class MessageController {
+	
 	private final MessageRepository messageRepository;
 
 	@Autowired
