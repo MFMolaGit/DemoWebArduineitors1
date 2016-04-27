@@ -16,43 +16,52 @@
 
 package com.example;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
+
 /**
  * @author Dave Syer
  */
-public class InMemoryMessageRepository /*implements MessageRepository */{
+@Profile("memory")
+@Repository
+public class InMemoryMessageRepository implements MessageRepository {
 
 	private static AtomicLong counter = new AtomicLong();
 
-	private final ConcurrentMap<Long, Message> messages = new ConcurrentHashMap<Long, Message>();
-
-//	@Override
-	public Iterable<Message> findAll() {
-		return this.messages.values();
+	private final ConcurrentMap<String, Message> messages = new ConcurrentHashMap<String, Message>();
+	
+	@Override
+	public List<Message> findAll() {
+		return new ArrayList<Message>(this.messages.values());
 	}
 
-//	@Override
-//	public Message save(Message message) {
-//		Long id = message.getId();
-//		if (id == null) {
-//			id = counter.incrementAndGet();
-//			message.setId(id);
-//		}
-//		this.messages.put(id, message);
-//		return message;
-//	}
+	@Override
+	public Message save(Message message) {
+		String sId = message.getId();
+		
+		if (sId == null) {
+			sId = String.valueOf(counter.incrementAndGet());
+			message.setId(sId);
+		}
+		
+		this.messages.put(sId, message);
+		
+		return message;
+	}
 
-//	@Override
-	public Message findMessage(Long id) {
+	@Override
+	public Message findOne(String id) {
 		return this.messages.get(id);
 	}
 
-//	@Override
-//	public Long delete(Message message) {
-//		return ((Message)this.messages.remove(message.getId())).getId();
-//	}
-
+	@Override
+	public void delete(Message message) {
+		this.messages.remove(message.getId());
+	}
 }

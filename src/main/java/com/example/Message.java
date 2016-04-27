@@ -49,9 +49,9 @@ public class Message implements Serializable {
 		return this.id;
 	}
 
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public Calendar getCreated() {
 		return this.created;

@@ -15,10 +15,14 @@ package com.example;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
 /**
  * @author Rob Winch
  */
-public interface MessageRepository {
+@Profile("mongo")
+public interface MongoMessageRepository extends MongoRepository<Message, String>{
 
 	List<Message> findAll();
 
